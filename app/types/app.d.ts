@@ -1,5 +1,5 @@
 export namespace AppTypes {
-  export type user = {
+  export type organiser = {
     id: string;
     name: string;
     email: string;
@@ -7,12 +7,21 @@ export namespace AppTypes {
 
   export interface walk {
     contact: string | null;
-    created_at: string | null;
     date: string;
     description: string | null;
     id: number;
     location: string | null;
-    organiser: string;
+    organiser: organiser;
+    postcode: string;
+  }
+
+  export interface walkObj {
+    contact: string | null;
+    date: string;
+    description: string | null;
+    id: number;
+    location: string | null;
+    organiser: string | null;
     postcode: string;
   }
 

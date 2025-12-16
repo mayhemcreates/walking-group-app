@@ -2,21 +2,17 @@
 import type { AppTypes } from "../types/app";
 import { useWalkStore } from "#imports";
 
-
-
 const walkStore = useWalkStore();
 
-const organiser = {id: "", name: "", email: ""}
 const newWalk: AppTypes.walk = reactive({
   date: "",
   location: "",
   postcode: "",
-  organiser: organiser,
-  organiserId: "",
+  organiser: { id: "", name: "", email: "" },
   description: "",
   id: 0,
+  contact: "",
 });
-
 
 </script>
 <template>

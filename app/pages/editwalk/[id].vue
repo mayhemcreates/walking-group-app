@@ -17,7 +17,7 @@ const walkObj = reactive<AppTypes.walk>({
   location: "",
   description: "",
   organiser: { id: "", name: "", email: "" },
-  organiserId: "",
+  contact: ""
 });
 
 onMounted(async () => {
