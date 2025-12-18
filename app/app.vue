@@ -4,9 +4,7 @@
 </script>
 
 <template>
-  <div>
-    <NuxtLayout>
-      <NuxtPage />
+    <NuxtLayout class="min-h-screen flex flex-col relative" >
+      <NuxtPage/>
     </NuxtLayout>
-  </div>
 </template>

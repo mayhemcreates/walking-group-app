@@ -26,6 +26,7 @@ export namespace AppTypes {
   }
 
   type WalkWithOrganiser = {
+    contact: string | null;
     id: number;
     postcode: string | null;
     date: string;
@@ -40,6 +41,7 @@ export namespace AppTypes {
 
   type WalkWithOrganiserJs = {
     id: number;
+    contact: string | null;
     postcode: string | null;
     date: string;
     location: string | null;
@@ -49,5 +51,14 @@ export namespace AppTypes {
       name: string;
       email: string;
     } | null;
+  };
+
+  type walkResult = {
+    success: boolean;
+    message?: string;
+  };
+
+  type Error = {
+    code: string;
   };
 }

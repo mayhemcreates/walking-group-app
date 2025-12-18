@@ -8,5 +8,8 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  modules: ["@nuxtjs/supabase", "@pinia/nuxt"],
+  modules: ["@nuxtjs/supabase", "@pinia/nuxt", "@nuxt/fonts"],
+  fonts: {
+    families: [{ name: "Lexend", provider: "google" }],
+  },
 });

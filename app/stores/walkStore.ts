@@ -1,12 +1,15 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { AppTypes } from "~/types/app";
+import { renderError } from "#imports";
 
 export const useWalkStore = defineStore("useWalkStore", () => {
   const walks = ref<AppTypes.WalkWithOrganiserJs[]>([]);
   const supabase = useSupabaseClient();
   const router = useRouter();
   const userStore = useUserStore();
+
+  let message = "";
   // Fetch all walks
   const fetchWalks = async () => {
     const { data, error } = await supabase.from("walks").select(`
@@ -79,14 +82,20 @@ export const useWalkStore = defineStore("useWalkStore", () => {
       } as AppTypes.walkObj as never;
 
       const { data, error } = (await supabase.from("walks").update(updates).eq("id", walk.id).select()) as { data: AppTypes.walk[] | null; error: any };
+
+      if (error) throw error;
     } catch (err) {
-      console.error("Error updating walk:", err);
-    } finally {
-      router.push("/schedule");
+      let error = err as AppTypes.Error;
+      if (error.code === "23505") {
+        message = "This date is already taken. Please pick another date";
+      }
+      return { success: false, message };
     }
+    router.push("/schedule");
+    return { success: true };
   };
 
-  const createWalk = async (walkObj: AppTypes.walk) => {
+  const createWalk = async (walkObj: AppTypes.walk): Promise<AppTypes.walkResult> => {
     try {
       const updates = {
         postcode: walkObj.postcode,
@@ -99,13 +108,15 @@ export const useWalkStore = defineStore("useWalkStore", () => {
 
       const { data, error } = await supabase.from("walks").insert(updates);
       if (error) throw error;
-
-      console.log("Updated walk: ", data);
     } catch (err) {
-      console.error("Error updating walk:", err);
-    } finally {
-      router.push("/schedule");
+      let error = err as AppTypes.Error;
+      if (error.code === "23505") {
+        message = "This date is already taken. Please pick another date";
+      }
+      return { success: false, message };
     }
+    router.push("/schedule");
+    return { success: true };
   };
 
   const deleteWalk = async (walkId: string) => {
