@@ -1,5 +1,10 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
 
 h1 {
-  @apply text-4xl mb-10;
+  @apply text-2xl lg:text-4xl mb-4 lg:mb-10;
+}
+
+@theme {
+  --font-lexend: "Lexend", sans-serif;
 }

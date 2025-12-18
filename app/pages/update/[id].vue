@@ -43,41 +43,35 @@ const submitForm = async (walk: AppTypes.walk) => {
 </script>
 
 <template>
-  <div class="container p-10">
-    <div class="px-[140px]">
-      <div class="bg-slate-200 rounded-lg p-10">
-        <h1>Edit walk</h1>
+  <h1>Edit walk</h1>
 
-        <form class="grid grid-cols-2 gap-x-10 gap-y-2" @submit.prevent="submitForm(walkObj)">
-          <div class="">
-            <label for="date">Date</label>
-            <input id="date" type="date" v-model="walkObj.date" class="bg-white rounded w-full p-4 mt-2"  min="2025-12-04" step="7" />
-            <span class="text-red-900 bg-red-200">{{ errorMessage }}</span>
-          </div>
-
-          <div>
-            <label for="location">Location</label>
-            <input id="location" type="text" v-model="walkObj.location" class="bg-white rounded w-full p-4 mt-2" />
-          </div>
-
-          <div>
-            <label for="postcode">Postcode</label>
-            <input id="postcode" type="text" v-model="walkObj.postcode" class="bg-white rounded w-full p-4 mt-2" />
-          </div>
-
-          <div>
-            <label for="organiser-name">Organiser Name</label>
-            <input id="organiser-name" v-model="walkObj.organiser.name" class="bg-white rounded w-full p-4 mt-2" />
-          </div>
-
-          <div>
-            <label for="organiser-email">Organiser Email</label>
-            <input id="organiser-email" v-model="walkObj.organiser.email" class="bg-white rounded w-full p-4 mt-2" />
-          </div>
-
-          <input type="submit" value="Save" class="bg-teal-900 rounded-lg h-12 self-end text-white hover:bg-teal-800 cursor-pointer transition-colors delay-300 ease-in" />
-        </form>
-      </div>
+  <form class="flex flex-col lg:grid grid-cols-2 gap-x-10 gap-y-2" @submit.prevent="submitForm(walkObj)">
+    <div class="">
+      <label for="date">Date</label>
+      <input id="date" type="date" v-model="walkObj.date" class="bg-white rounded w-full p-4 mt-2" min="2025-12-04" step="7" />
+      <span class="text-red-900 bg-red-200">{{ errorMessage }}</span>
     </div>
-  </div>
+
+    <div>
+      <label for="location">Location</label>
+      <input id="location" type="text" v-model="walkObj.location" class="bg-white rounded w-full p-4 mt-2" />
+    </div>
+
+    <div>
+      <label for="postcode">Postcode</label>
+      <input id="postcode" type="text" v-model="walkObj.postcode" class="bg-white rounded w-full p-4 mt-2" />
+    </div>
+
+    <div>
+      <label for="organiser-name">Organiser Name</label>
+      <input id="organiser-name" v-model="walkObj.organiser.name" class="bg-white rounded w-full p-4 mt-2" />
+    </div>
+
+    <div>
+      <label for="organiser-email">Organiser Email</label>
+      <input id="organiser-email" v-model="walkObj.organiser.email" class="bg-white rounded w-full p-4 mt-2" />
+    </div>
+
+    <input type="submit" value="Save" class="bg-teal-900 rounded-lg h-12 self-end text-white hover:bg-teal-800 cursor-pointer transition-colors delay-300 ease-in" />
+  </form>
 </template>

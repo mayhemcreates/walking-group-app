@@ -4,7 +4,7 @@
 </script>
 
 <template>
-    <NuxtLayout class="min-h-screen flex flex-col relative" >
+    <NuxtLayout class="min-h-screen flex flex-col relative font-lexend" >
       <NuxtPage/>
     </NuxtLayout>
 </template>
