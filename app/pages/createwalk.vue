@@ -31,28 +31,28 @@ const submitWalk = async (walk: AppTypes.walk) => {
   <form class="flex flex-col lg:grid grid-cols-2 gap-y-2 gap-x-10" @submit.prevent="submitWalk(newWalk)">
     <div>
       <label for="date">Date</label>
-      <input id="date" type="date" v-model="newWalk.date" class="bg-white rounded w-full p-4 mt-2" min="2025-12-04" step="7" />
+      <input id="date" type="date" v-model="newWalk.date" class="bg-light-grey rounded w-full p-4 mt-2" min="2025-12-04" step="7" />
       <span class="text-red-900 bg-red-200">{{ errorMessage }}</span>
     </div>
 
     <div>
       <label for="location">Location</label>
-      <input id="location" type="text" v-model="newWalk.location" class="bg-white rounded w-full p-4 mt-2" />
+      <input id="location" type="text" v-model="newWalk.location" class="bg-light-grey rounded w-full p-4 mt-2" />
     </div>
 
     <div>
       <label for="postcode">Postcode</label>
-      <input id="postcode" type="text" v-model="newWalk.postcode" class="bg-white rounded w-full p-4 mt-2" />
+      <input id="postcode" type="text" v-model="newWalk.postcode" class="bg-light-grey rounded w-full p-4 mt-2" />
     </div>
 
     <div>
       <label for="organiser-name">Organiser Name</label>
-      <input id="organiser-name" v-model="newWalk.organiser.name" class="bg-white rounded w-full p-4 mt-2" />
+      <input id="organiser-name" v-model="newWalk.organiser.name" class="bg-light-grey rounded w-full p-4 mt-2" />
     </div>
 
     <div>
       <label for="organiser-email">Organiser Email</label>
-      <input id="organiser-email" v-model="newWalk.organiser.email" class="bg-white rounded w-full p-4 mt-2" />
+      <input id="organiser-email" v-model="newWalk.organiser.email" class="bg-light-grey rounded w-full p-4 mt-2" />
     </div>
 
     <input type="submit" value="Save" class="bg-teal-900 rounded-lg h-12 lg:self-end mt-5 lg:mt-0 text-white hover:bg-teal-800 cursor-pointer transition-colors delay-300 ease-in" />

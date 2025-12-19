@@ -7,4 +7,9 @@ h1 {
 
 @theme {
   --font-lexend: "Lexend", sans-serif;
+  --color-light-green: rgba(240, 255, 217, 0.6);
+  --color-mid-green: rgba(241, 247, 230, 0.5);
+  --color-grey-green: #b0cfba;
+  --color-light-grey: #d3e3d8;
+  --color-dark-blue: #051f24;
 }
