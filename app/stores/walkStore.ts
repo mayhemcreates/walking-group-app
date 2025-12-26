@@ -14,6 +14,7 @@ export const useWalkStore = defineStore("useWalkStore", () => {
   const fetchWalks = async () => {
     const { data, error } = await supabase.from("walks").select(`
       contact, 
+      leader,
       date, 
       description, 
       id, 
@@ -73,6 +74,7 @@ export const useWalkStore = defineStore("useWalkStore", () => {
     try {
       const updates = {
         contact: walk.contact,
+        leader: walk.leader,
         postcode: walk.postcode,
         date: walk.date,
         description: walk.description,
@@ -100,6 +102,7 @@ export const useWalkStore = defineStore("useWalkStore", () => {
       const updates = {
         postcode: walkObj.postcode,
         date: walkObj.date,
+        leader: walkObj.leader,
         location: walkObj.location,
         description: walkObj.description,
         contact: walkObj.contact,

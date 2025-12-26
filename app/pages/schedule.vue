@@ -69,6 +69,8 @@ const formatDate = (walkDate: string, isMob: boolean) => {
           <th>Location</th>
           <th>Postcode</th>
           <th>Contact</th>
+          <th>Leader</th>
+
           <th class="hidden lg:table-cell">Edit Walk</th>
           <th class="hidden lg:table-cell">Remove Walk</th>
         </tr>
@@ -87,6 +89,7 @@ const formatDate = (walkDate: string, isMob: boolean) => {
             </a>
           </td>
           <td :class="[index === sortedWalks.length - 1 ? 'rounded-br-lg' : '']" class="text-center">{{ walk.contact }}</td>
+          <td :class="[index === sortedWalks.length - 1 ? 'rounded-br-lg' : '']" class="text-center">{{ walk.leader }}</td>
 
           <td class="hidden lg:table-cell">
             <NuxtLink :to="`update/${walk.id}`" class="flex justify-center"

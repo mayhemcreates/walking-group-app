@@ -7,6 +7,7 @@ export namespace AppTypes {
 
   export interface walk {
     contact: string | null;
+    leader: string | null;
     date: string;
     description: string | null;
     id: number;
@@ -19,29 +20,15 @@ export namespace AppTypes {
     contact: string | null;
     date: string;
     description: string | null;
-    id: number;
     location: string | null;
     organiser: string | null;
     postcode: string;
   }
 
-  type WalkWithOrganiser = {
-    contact: string | null;
-    id: number;
-    postcode: string | null;
-    date: string;
-    location: string | null;
-    description: string | null;
-    organiser: {
-      id: string;
-      name: string;
-      email: string;
-    } | null;
-  };
-
   type WalkWithOrganiserJs = {
     id: number;
     contact: string | null;
+    leader: string | null;
     postcode: string | null;
     date: string;
     location: string | null;

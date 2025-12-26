@@ -8,6 +8,7 @@ const errorMessage = ref("");
 const newWalk: AppTypes.walk = reactive({
   date: "",
   location: "",
+  leader: "",
   postcode: "",
   organiser: { id: "", name: "", email: "" },
   description: "",
@@ -47,12 +48,12 @@ const submitWalk = async (walk: AppTypes.walk) => {
 
     <div>
       <label for="organiser-name">Organiser Name</label>
-      <input id="organiser-name" v-model="newWalk.organiser.name" class="bg-light-grey rounded w-full p-4 mt-2" />
+      <input id="organiser-name" v-model="newWalk.leader" class="bg-light-grey rounded w-full p-4 mt-2" />
     </div>
 
     <div>
-      <label for="organiser-email">Organiser Email</label>
-      <input id="organiser-email" v-model="newWalk.organiser.email" class="bg-light-grey rounded w-full p-4 mt-2" />
+      <label for="organiser-email">contact</label>
+      <input id="organiser-email" v-model="newWalk.contact" class="bg-light-grey rounded w-full p-4 mt-2" />
     </div>
 
     <input type="submit" value="Save" class="bg-teal-900 rounded-lg h-12 lg:self-end mt-5 lg:mt-0 text-white hover:bg-teal-800 cursor-pointer transition-colors delay-300 ease-in" />
