@@ -16,10 +16,19 @@ const newWalk: AppTypes.walk = reactive({
   contact: "",
 });
 
+const updateErrorMessage = () => {
+  if (errorMessage.value !== "") {
+    errorMessage.value = ""
+  }
+}
+
 const submitWalk = async (walk: AppTypes.walk) => {
   const result = await walkStore.createWalk(walk);
   if (!result.success) {
     errorMessage.value = result.message ?? "";
+    if (errorMessage.value === "") {
+      errorMessage.value = "A walk must have a date"
+    }
   } else {
     errorMessage.value = "";
   }
@@ -32,7 +41,7 @@ const submitWalk = async (walk: AppTypes.walk) => {
   <form class="flex flex-col lg:grid grid-cols-2 gap-y-2 gap-x-10" @submit.prevent="submitWalk(newWalk)">
     <div>
       <label for="date">Date</label>
-      <input id="date" type="date" v-model="newWalk.date" class="bg-light-grey rounded w-full p-4 mt-2" min="2025-12-04" step="7" />
+      <input id="date" type="date" v-model="newWalk.date" class="bg-light-grey rounded w-full p-4 mt-2" min="2025-12-04" step="7" @change="updateErrorMessage()" />
       <span class="text-red-900 bg-red-200">{{ errorMessage }}</span>
     </div>
 
@@ -47,12 +56,13 @@ const submitWalk = async (walk: AppTypes.walk) => {
     </div>
 
     <div>
-      <label for="organiser-name">Organiser Name</label>
+      <label for="organiser-name">Leader</label>
       <input id="organiser-name" v-model="newWalk.leader" class="bg-light-grey rounded w-full p-4 mt-2" />
     </div>
 
     <div>
-      <label for="organiser-email">contact</label>
+      <label for="organiser-email">Contact</label>
+      <div class="text-xs">Enter a mobile contact mobile number in the format 07********* (no spaces)</div>
       <input id="organiser-email" v-model="newWalk.contact" class="bg-light-grey rounded w-full p-4 mt-2" />
     </div>
 

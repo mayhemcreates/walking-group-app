@@ -10,8 +10,8 @@ walkStore.fetchWalks();
 const lineClamp = ref("line-clamp-2");
 const accordionText = ref("more");
 const accordionIcons = {
-  closed: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-4 h-4"><path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z" class="group-hover:fill-blue-600"/></svg>',
-  open: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-h h-4"><path d="M96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320z" class="group-hover:fill-blue-600"/></svg>',
+  closed: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-4 h-4"><path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z" fill="white"/></svg>',
+  open: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-h h-4"><path d="M96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320z" fill="white"/></svg>',
 };
 
 const currentAccordionIcon = ref(accordionIcons.closed);
@@ -60,13 +60,14 @@ const formatDate = (walkDate: string, isMob: boolean) => {
 
 <template>
   <h1>Walk Schedule</h1>
+  <h2 class="md:hidden mb-4">Click the telephone icon to call the walk leader</h2>
 
   <div class="flex justify-center">
     <table class="w-full rounded bg-grey-green table-fixed">
       <thead>
         <tr class="lg:text-lg">
           <th>Date</th>
-          <th>Location</th>
+          <th class="hidden lg:table-cell">Location</th>
           <th>Postcode</th>
           <th>Contact</th>
           <th>Leader</th>
@@ -79,16 +80,24 @@ const formatDate = (walkDate: string, isMob: boolean) => {
         <tr v-for="(walk, index) in sortedWalks" :key="`walk-${index}`" :class="[index % 2 ? '' : 'bg-light-grey']">
           <td :class="[index === sortedWalks.length - 1 ? 'rounded-bl-lg' : '']" class="text-center lg:hidden">{{ formatDate(walk.date, true) }}</td>
           <td :class="[index === sortedWalks.length - 1 ? 'rounded-bl-lg' : '']" class="hidden lg:table-cell text-center">{{ formatDate(walk.date, false) }}</td>
-          <td>
+          <td class="hidden lg:table-cell">
             <span :class="lineClamp">{{ walk.location }}</span>
-            <button class="flex items-center gap- cursor-pointer text-dark-blue group hover:text-blue-600" @click="expandAccordion" v-if="renderAccordion(walk.location)">Read {{ accordionText }} <span v-html="currentAccordionIcon"></span></button>
+            <button class="flex items-center gap-2 cursor-pointer bg-dark-blue text-white rounded px-3 py-2 group text-xs hover:bg-grey-blue transition-colors delay-300 ease-in" @click="expandAccordion" v-if="renderAccordion(walk.location)">Read {{ accordionText }} <span v-html="currentAccordionIcon"></span></button>
           </td>
           <td class="text-center">
             <a :href="generateMapLink(walk.postcode)">
               {{ walk.postcode }}
             </a>
           </td>
-          <td :class="[index === sortedWalks.length - 1 ? 'rounded-br-lg' : '']" class="text-center">{{ walk.contact }}</td>
+          <td :class="[index === sortedWalks.length - 1 ? 'rounded-br-lg' : '']" class="text-center">
+            <span class="md:hidden">
+              <a  v-if="walk.contact" :href="`tel:${walk.contact}`" class="flex justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 640 640">
+                  <path d="M224.2 89C216.3 70.1 195.7 60.1 176.1 65.4L170.6 66.9C106 84.5 50.8 147.1 66.9 223.3C104 398.3 241.7 536 416.7 573.1C493 589.3 555.5 534 573.1 469.4L574.6 463.9C580 444.2 569.9 423.6 551.1 415.8L453.8 375.3C437.3 368.4 418.2 373.2 406.8 387.1L368.2 434.3C297.9 399.4 241.3 341 208.8 269.3L253 233.3C266.9 222 271.6 202.9 264.8 186.3L224.2 89z" /></svg>
+              </a>
+            </span>
+            <span class="hidden md:table">{{ walk.contact }}</span>
+          </td>
           <td :class="[index === sortedWalks.length - 1 ? 'rounded-br-lg' : '']" class="text-center">{{ walk.leader }}</td>
 
           <td class="hidden lg:table-cell">

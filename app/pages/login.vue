@@ -6,7 +6,7 @@ const email = ref("");
 const password = ref("");
 
 const passwordInputType = ref("password");
-const toggleFill = ref("black");
+const toggleFill = ref("#051f24");
 const handleLogin = async () => {
   try {
     loading.value = true;
@@ -21,7 +21,7 @@ const handleLogin = async () => {
 
 const toggleVisibility = () => {
   passwordInputType.value = passwordInputType.value === "password" ? "text" : "password";
-  toggleFill.value = toggleFill.value === "black" ? "grey" : "black";
+  toggleFill.value = toggleFill.value === "#051f24" ? "grey" : "#051f24";
 };
 </script>
 

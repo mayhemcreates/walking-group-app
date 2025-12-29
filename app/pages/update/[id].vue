@@ -64,12 +64,13 @@ const submitForm = async (walk: AppTypes.walk) => {
     </div>
 
     <div>
-      <label for="organiser-name">Organiser Name</label>
+      <label for="organiser-name">Leader</label>
       <input id="organiser-name" v-model="walkObj.leader" class="bg-white rounded w-full p-4 mt-2" />
     </div>
 
     <div>
-      <label for="organiser-email">Organiser Email</label>
+      <label for="organiser-email">Contact</label>
+      <div class="text-xs">Enter a mobile contact mobile number in the format 07********* (no spaces)</div>
       <input id="organiser-email" v-model="walkObj.contact" class="bg-white rounded w-full p-4 mt-2" />
     </div>
 
