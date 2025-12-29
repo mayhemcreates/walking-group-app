@@ -4,15 +4,17 @@ const supabase = useSupabaseClient();
 const loading = ref(false);
 const email = ref("");
 const password = ref("");
+const errorMessage = ref("");
 
 const passwordInputType = ref("password");
 const toggleFill = ref("#051f24");
 const handleLogin = async () => {
   try {
     loading.value = true;
-    await supabase.auth.signInWithPassword({ email: email.value, password: password.value });
+    const { error } = await supabase.auth.signInWithPassword({ email: email.value, password: password.value });
+    if (error) throw error;
   } catch (e) {
-    alert("issue signing in");
+    errorMessage.value = "Email / password combination is incorrect. Please check your login credentials and try again";
   } finally {
     router.push("/schedule");
     loading.value = false;
@@ -45,6 +47,8 @@ const toggleVisibility = () => {
         </div>
       </div>
     </div>
+    <span class="text-red-900 bg-red-200 w-1/2">{{ errorMessage }}</span>
+
     <input type="submit" class="bg-teal-900 rounded-lg h-12 w-full lg:w-80 self-end text-white hover:bg-teal-800 cursor-pointer transition-colors delay-300 ease-in" :value="loading ? 'Loading' : 'Sign in'" :disabled="loading" />
   </form>
 </template>
